@@ -1,9 +1,11 @@
+import { StringBuffer } from './string-buffer';
+
 /**
  * Escape a "base64" string to its "base64url" representation.
  * @param {string} base64Str The "base64" input string.
  * @returns {string} The "base64url" string.
  */
-export function escape(base64Str: string) : string {
+export function escape(base64Str: string): string {
     return base64Str
         .replace(/=/g, "")
         .replace(/\+/g, "-")
@@ -16,15 +18,15 @@ export function escape(base64Str: string) : string {
  * @param {string} encoding The same as for {@link Buffer#toString}.
  * @returns {string} The "base64" string.
  */
-export function unescape(base64url: string | Buffer, encoding = 'utf8') : string {
+export function unescape(base64url: string, encoding = 'utf8'): string {
 
     const length = base64url.length;
 
     let padding = 3 - (length + 3) % 4;
-    let decoded = Buffer.alloc(base64url.length + padding);
+    let decoded = StringBuffer.alloc(base64url.length + padding);
 
-    decoded.fill(base64url);
-    decoded.fill("=", length);
+    decoded.set (base64url, 0, encoding);
+    decoded.fill('=', length, encoding);
 
     return decoded.toString(encoding)
         .replace(/-/g, "+")
@@ -37,8 +39,8 @@ export function unescape(base64url: string | Buffer, encoding = 'utf8') : string
  * @param {string} encoding The same as for {@link Buffer#toString}.
  * @returns {string} The "base64url" encoded string.
  */
-export function encode(value: string | Buffer, encoding = 'utf8') : string {
-    return escape(Buffer.from(value).toString('base64'));
+export function encode(value: string, encoding = 'utf8'): string {
+    return escape(StringBuffer.from(value).toString('base64'));
 }
 
 /**
@@ -47,6 +49,6 @@ export function encode(value: string | Buffer, encoding = 'utf8') : string {
  * @param {string} encoding The same as for {@link Buffer#toString}.
  * @returns {string} The decoded representation of the "base64url" string.
  */
-export function decode(value: string | Buffer, encoding = 'utf8') : string {
-    return Buffer.from(unescape(value, encoding), 'base64').toString(encoding);
+export function decode(value: string, encoding = 'utf8'): string {
+    return StringBuffer.from(unescape(value, encoding), 'base64').toString(encoding);
 }

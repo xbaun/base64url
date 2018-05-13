@@ -1,1 +1,1 @@
-module.exports = require('./dist/node-base64url');
+module.exports = require('./dist/base64url');

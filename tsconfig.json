@@ -11,9 +11,12 @@
     "declaration": true
   },
   "files": [
-    "./src/node-base64url.ts"
+    "./src/base64url.ts"
   ],
   "exclude": [
     "node_modules"
+  ],
+  "include": [
+    "src/**/*.d.ts"
   ]
 }

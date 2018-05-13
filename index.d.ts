@@ -1,1 +1,1 @@
-/// <reference path="./dist/node-base64url.d.ts" />
+/// <reference path="./dist/base64url.d.ts" />
