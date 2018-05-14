@@ -40,6 +40,9 @@ StringBuffer.TypedArray = class extends StringBuffer {
         this.buf.fill(str.charCodeAt(0), offset);
     }
     set(str, offset, encoding) {
+        if (encoding == 'base64') {
+            str = atob(str);
+        }
         this.buf.set(str.split('').map(s => s.charCodeAt(0)), offset);
     }
     toString(encoding) {

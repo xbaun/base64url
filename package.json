@@ -1,6 +1,6 @@
 {
   "name": "@xbaun/base64url",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An isomorphic \"base64Url\" encoder/decoder.",
   "main": "./index.js",
   "types": "./index.d.ts",

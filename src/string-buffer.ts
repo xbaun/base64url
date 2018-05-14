@@ -76,6 +76,11 @@ export abstract class StringBuffer<TBuffer extends IBuffer> implements IStringBu
         }
 
         set(str: string, offset: number, encoding?: string): void {
+
+            if (encoding == 'base64') {
+                str = atob(str);
+            }
+
             this.buf.set(str.split('').map(s => s.charCodeAt(0)), offset);
         }
 
