@@ -20,7 +20,16 @@ export interface IStringBuffer extends IBuffer {
 export abstract class StringBuffer<TBuffer extends IBuffer> implements IStringBuffer {
 
     public static from(str: string, encoding: 'utf8' | 'base64' = 'utf8'): IStringBuffer {
-        let buf = StringBuffer.alloc(str.length);
+
+        let length;
+
+        if (encoding == 'base64') {
+            length = Math.trunc(str.indexOf('=') * 6 / 8);
+        } else {
+            length = str.length;
+        }
+
+        let buf = StringBuffer.alloc(length);
         buf.set(str, 0, encoding);
         return buf;
     }

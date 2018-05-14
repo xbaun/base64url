@@ -16,7 +16,14 @@ var StringBuffer = (function () {
     }
     StringBuffer.from = function (str, encoding) {
         if (encoding === void 0) { encoding = 'utf8'; }
-        var buf = StringBuffer.alloc(str.length);
+        var length;
+        if (encoding == 'base64') {
+            length = Math.trunc(str.indexOf('=') * 6 / 8);
+        }
+        else {
+            length = str.length;
+        }
+        var buf = StringBuffer.alloc(length);
         buf.set(str, 0, encoding);
         return buf;
     };

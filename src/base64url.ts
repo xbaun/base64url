@@ -50,5 +50,5 @@ export function encode(value: string, encoding = 'utf8'): string {
  * @returns {string} The decoded representation of the "base64url" string.
  */
 export function decode(value: string, encoding = 'utf8'): string {
-    return StringBuffer.from(unescape(value, encoding), 'base64').toString(encoding);
+    return StringBuffer.from(unescape(value, encoding),'base64').toString(encoding);
 }
