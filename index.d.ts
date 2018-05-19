@@ -1,1 +1,1 @@
-/// <reference path="./dist/base64url.d.ts" />
+export * from './dist/base64url';
